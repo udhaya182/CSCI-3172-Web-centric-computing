@@ -1,86 +1,62 @@
-// Get form elements
-const numberForm = document.getElementById("numberForm");
-const numberInput = document.getElementById("numberInput");
-const resultContainer = document.getElementById("resultContainer");
-const container = document.querySelector(".container");
+document.addEventListener("DOMContentLoaded", function () {
+    const calculateButton = document.getElementById("calculateButton");
+    const primeResult = document.getElementById("primeResult");
+    const compositeResult = document.getElementById("compositeResult");
+    const neitherResult = document.getElementById("neitherResult");
 
-// Function to check if a number is prime
-function isPrime(n) {
-    if (n <= 1) return false;
-    if (n <= 3) return true;
-    if (n % 2 === 0 || n % 3 === 0) return false;
-    for (let i = 5; i * i <= n; i += 6) {
-        if (n % i === 0 || n % (i + 2) === 0) return false;
-    }
-    return true;
-}
+    calculateButton.addEventListener("click", function () {
+        const inputNumbers = document.getElementById("inputNumbers").value;
+        const numbersArray = inputNumbers.split(",").map(Number);
 
-// Function to change background color based on the selected day
-function changeBackgroundColor() {
-    const selectedDay = daySelect.value;
+        let primeCount = 0;
+        let compositeCount = 0;
+        let neitherCount = 0;
 
-    switch (selectedDay) {
-        case "Monday":
-            container.style.backgroundColor = "red";
-            break;
-        case "Tuesday":
-            container.style.backgroundColor = "blue";
-            break;
-        case "Wednesday":
-            container.style.backgroundColor = "green";
-            break;
-        case "Thursday":
-            container.style.backgroundColor = "purple";
-            break;
-        case "Friday":
-            container.style.backgroundColor = "orange";
-            break;
-        case "Saturday":
-            container.style.backgroundColor = "pink";
-            break;
-        case "Sunday":
-            container.style.backgroundColor = "yellow";
-            break;
-        default:
-            container.style.backgroundColor = "white";
-    }
-}
-
-// Function to handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const inputValue = parseInt(numberInput.value);
-
-    if (isNaN(inputValue)) {
-        resultContainer.innerHTML = "Please enter a valid number.";
-    } else {
-        const isEven = inputValue % 2 === 0;
-        const isPrimeNumber = isPrime(inputValue);
-        let resultMessage = `The number entered is ${isEven ? "even" : "odd"}`;
-
-        if (isPrimeNumber) {
-            resultMessage += " prime";
-        } else {
-            resultMessage += " composite";
+        for (let number of numbersArray) {
+            if (isPrime(number)) {
+                primeCount++;
+            } else if (isComposite(number)) {
+                compositeCount++;
+            } else {
+                neitherCount++;
+            }
         }
 
-        if (inputValue <= 50) {
-            resultMessage += " and less than or equal to 50.";
-        } else if (inputValue <= 75) {
-            resultMessage += " and greater than 50 but less than or equal to 75.";
-        } else if (inputValue <= 100) {
-            resultMessage += " and greater than 75 but less than or equal to 100.";
-        } else {
-            resultMessage += " and greater than 100.";
+        primeResult.textContent = `Prime Numbers: ${primeCount}`;
+        compositeResult.textContent = `Composite Numbers: ${compositeCount}`;
+        neitherResult.textContent = `Neither: ${neitherCount}`;
+    });
+
+    function isPrime(number) {
+        if (number <= 1) {
+            return false;
         }
-
-        resultContainer.innerHTML = resultMessage;
+        if (number <= 3) {
+            return true;
+        }
+        if (number % 2 === 0 || number % 3 === 0) {
+            return false;
+        }
+        for (let i = 5; i * i <= number; i += 6) {
+            if (number % i === 0 || number % (i + 2) === 0) {
+                return false;
+            }
+        }
+        return true;
     }
-}
 
-// Add a submit event listener to the form
-numberForm.addEventListener("submit", handleFormSubmit);
-
-// Keep the background color changer code
-const daySelect = document.getElementById("daySelect");
-daySelect.addEventListener("change", changeBackgroundColor);
+    function isComposite(number) {
+        if (number <= 1) {
+            return false;
+        }
+        if (number === 2 || number === 3) {
+            return false;
+        }
+        for (let i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i === 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+});

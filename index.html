@@ -1,74 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Color Changer and Number Checker</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            background-color: #fff;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 24px;
-        }
-        label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        select, input, button {
-            padding: 10px;
-            margin: 5px 0;
-            width: 100%;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        #resultContainer {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Array and Loops Lab</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Background Color Changer and Number Checker</h1>
-        
-        <!-- Background Color Changer -->
-        <label for="daySelect">Select a day:</label>
-        <select id="daySelect">
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-        </select>
-        
-        <!-- Number Checker -->
-        <form id="numberForm">
-            <label for="numberInput">Enter a number:</label>
-            <input type="number" id="numberInput" required>
-            <button type="submit">Check Number</button>
-        </form>
-        <div id="resultContainer">
-            <!-- Display the results here -->
-        </div>
+    <h1>Array and Loops Lab</h1>
+    <form>
+        <label for="inputNumbers">Enter numbers separated by commas:</label>
+        <input type="text" id="inputNumbers" placeholder="e.g., 20,31,1,55,6">
+        <button type="button" id="calculateButton">Calculate</button>
+    </form>
+    <div>
+        <p>Results:</p>
+        <p id="primeResult">Prime Numbers:</p>
+        <p id="compositeResult">Composite Numbers:</p>
+        <p id="neitherResult">Neither:</p>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
